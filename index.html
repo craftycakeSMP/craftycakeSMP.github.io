@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Starter</title>
+    <script>
+        function redirectToYouTube() {
+            window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        }
+    </script>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Server Starter</h1>
+    
+    <button id="startButton">Start</button>
+    <button id="stopButton">Stop</button>
+    <button type="button" onclick="redirectToYouTube()">Creative Mode</button>
+
+    <script>
+        function handleButtonClick(buttonType) {
+            switch (buttonType) {
+                case 'start':
+                    window.location.href = 'scripts/start.bat';
+                    break;
+                case 'stop':
+                    window.location.href = 'scripts/stop.bat';
+                    break;
+
+                default:
+                    console.error('Invalid button type');
+            }
+        }
+
+        document.getElementById('startButton').addEventListener('click', function() {
+            handleButtonClick('start');
+        });
+
+        document.getElementById('stopButton').addEventListener('click', function() {
+            handleButtonClick('stop');
+        });
+    </script>
+</body>
+</html>
