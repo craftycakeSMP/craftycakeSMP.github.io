@@ -8,6 +8,19 @@
         function redirectToYouTube() {
             window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
         }
+
+        function sendRequest(buttonType) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "https://craftycakesmp.github.io/button_click", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log("Request sent successfully!");
+                }
+            };
+            var data = JSON.stringify({ buttonType: buttonType });
+            xhr.send(data);
+        }
     </script>
     <style>
         body {
@@ -28,32 +41,8 @@
 <body>
     <h1>Server Starter</h1>
     
-    <button id="startButton">Start</button>
-    <button id="stopButton">Stop</button>
+    <button id="startButton" onclick="sendRequest('start')">Start</button>
+    <button id="stopButton" onclick="sendRequest('stop')">Stop</button>
     <button type="button" onclick="redirectToYouTube()">Creative Mode</button>
-
-    <script>
-        function handleButtonClick(buttonType) {
-            switch (buttonType) {
-                case 'start':
-                    window.location.href = 'scripts/start.bat';
-                    break;
-                case 'stop':
-                    window.location.href = 'scripts/stop.bat';
-                    break;
-
-                default:
-                    console.error('Invalid button type');
-            }
-        }
-
-        document.getElementById('startButton').addEventListener('click', function() {
-            handleButtonClick('start');
-        });
-
-        document.getElementById('stopButton').addEventListener('click', function() {
-            handleButtonClick('stop');
-        });
-    </script>
 </body>
 </html>
